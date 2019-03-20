@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .parent{
+            border: 3px solid red;
+            height: 600px;
+            text-align: center;
+        }
+        .child{
+            border: 3px solid black;
+            display: inline-block;
+            width: 300px;
+            vertical-align: middle;
+        }
+        .parent:before{
+            content:'';
+            outline: 3px solid red;
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+        }
+        .parent:after{
+            content:'';
+            outline: 3px solid red;
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+        }
+        /* .parent .before{
+            outline: 3px solid red;
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+        }
+        .parent .after{
+            outline: 3px solid red;
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+        } */
+    </style>
+</head>
+<body>
+        <div class="parent">
+                <!-- <span class=before></span> -->
+                <div class="child">
+                    一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字一串文字
+                </div>
+                <!-- <span class=after></span> -->
+            </div>
+
+</body>
+</html>

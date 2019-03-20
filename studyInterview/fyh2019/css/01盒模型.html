@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .wrapper{
+            width: 100px;
+            height: 50px;
+            /* 改为50 ,50+50==100则content=0  */
+            padding: 10px;  
+            background-color: #dedede;
+        }
+        .z1{
+            box-sizing: border-box;
+        }
+        .z2{
+            box-sizing: content-box;
+        }
+    </style>
+</head>
+<body>
+    <div class ="wrapper z1"></div>
+    <div class="wrapper z2"></div>
+
+</body>
+</html>
