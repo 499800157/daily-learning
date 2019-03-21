@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .left{
+            background: pink;
+        }
+        .right{
+            background: green;
+        }
+        .center{
+            background-color:blue;
+        }
+
+        
+
+    </style>
+</head>
+<body>
+    
+    <!-- 左右布局 -->
+    <div id= "flex1">
+
+        <div class="left">left</div>
+        <div class="right">right</div>
+
+    </div>
+    <style>
+        #flex1 {
+            display: flex;
+        }
+        #flex1 .left{
+            flex: 0 1 350px;
+            /* width: 350px; */
+        }
+        #flex1 .right{
+            flex: 1;
+        }
+    </style>
+    <!-- 左中右 -->
+
+    <div id="flex2">
+        <div class="left">left</div>
+        <div class="center">center</div>
+        <div class="right">right</div>
+    </div>
+    <style>
+        #flex2{
+            display: flex;
+        }
+        #flex2 .left{
+            width: 100px;
+        }
+        #flex2 .right{
+            width: 100px;
+        }
+        #flex2 .center{
+            flex: 1;
+        }
+        
+    </style>
+
+    <!-- 左中右等分 -->
+    <div id="flex3">
+        <div class="left">left</div>
+        <div class="center">center</div>
+        <div class="right">right</div>
+    </div>
+    <style>
+        #flex3{
+            display: flex;
+        }
+        #flex3>div{
+            flex: 1;
+        }
+    </style>
+</body>
+</html>
