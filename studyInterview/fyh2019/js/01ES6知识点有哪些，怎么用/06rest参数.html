@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>
+        欢迎来到凝思
+    </h2>
+
+
+    <script>
+        //es5
+        function sum (a,b){
+            var total = 0;
+            if(a)total+=a;
+            if(b)total+=b;
+
+            console.log(total);
+        }
+        sum(2,6);
+        
+        //es6
+
+        function sum1 (...a){
+            var total = 0;
+            for (var i of a){
+                total+=i;
+            }
+            console.log(total);
+        }
+        sum1(1,2,3,4,5);
+
+       
+        let sum2 = (...a)=>{
+            let total = 0;
+            for (var i of a){
+                total+=i;
+            }
+            //a表示参数的集合
+            console.log(a);
+            console.log(total);
+        };
+        sum2(1,2,3);
+    </script>
+</body>
+</html>

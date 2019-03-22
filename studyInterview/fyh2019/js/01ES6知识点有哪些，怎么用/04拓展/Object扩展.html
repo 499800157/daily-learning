@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // 1.添加的方法
+        const obj = {
+            name:"imooc",
+            cource : "react开发"
+        }
+
+        console.log(Object.keys(obj))       // ["name","cource"]
+        console.log(Object.values(obj))         //["imooc" ,"react开发"]
+        console.log(Object.entries(obj))        // [["name" , "imooc"] , [ "cource" , "react开发"]]
+
+        // 2.属性名使用变量     计算属性
+        const name  = "imooc"
+        const obj1 = {
+            name:"hello"
+        }
+        console.log(obj1)       //{name :"hello"}
+
+        const name1  = "imooc"
+        const obj2 = {
+            [name1]:"hello"
+        }
+        console.log(obj2)       // {imooc : "hello"}
+
+        // 3.扩展符 组合对象
+        const o1 = {name:"imooc" , cource :"react开发"}
+        const o2 = {type :"IT" ,name :"woniu"}
+        // 后面的对象含有的前面对象的属性会覆盖  ；不改变原有的对象
+        console.log({...o1,...o2})      //{name:"woniu" , cource :"react开发",type:"IT"}  
+        console.log(o1)         //不改变原有的对象
+
+        
+    </script>
+</body>
+</html>

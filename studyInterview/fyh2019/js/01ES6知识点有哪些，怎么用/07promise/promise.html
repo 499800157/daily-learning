@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let checkLogin=function(){
+            //返回一个promise的结构才能使用.then的方式
+            //仅是实例化的Promise对象会立即执行（不是在函数中的）；
+            return new Promise(function(resolve,reject){
+                // let flag=document.cookie.indexOf("userId")>-1 ?true:false;
+                let flag = true
+                if(flag===true){
+                    resolve({
+                        status:0,
+                        result:true
+                    });
+                }else{
+                    reject({
+                        status:1,
+                        result:false
+                    });
+                }
+                
+                console.log(flag);
+            })
+        }
+        checkLogin().then((res)=>{
+            if(res.status==0){
+                console.log("login success");
+            }
+        }).catch((err)=>{
+            console.log(`err原因：${err}`);
+        })
+    </script>
+</body>
+</html>

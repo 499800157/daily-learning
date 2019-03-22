@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick = "testPromise()">make</button>
+    <div id="log">
+
+    </div>
+    
+    <script>
+            var promiseCount = 0
+
+            function testPromise(){
+                let thisPromiseCount = ++promiseCount
+                let log = document.getElementById("log")
+                log.insertAdjacentHTML("beforeend",thisPromiseCount + "）开始（<small>同步代码开始</small>）<br/>")
+                let p1 = new Promise((resolve,reject) =>{
+                    log.insertAdjacentHTML("beforeend",thisPromiseCount + "）Promise开始（<small>异步代码开始</small>）<br/>")
+                    window.setTimeout(() => {
+                        resolve(thisPromiseCount)
+                    },Math.random()*2000+1000);
+                })
+                p1.then(function(value){
+                    log.insertAdjacentHTML("beforeend",value +   '）Promise 已填充完毕 (<small>异步代码结束</small>)<br/>')
+                }).catch((reason) => {
+                    console.log('处理失败的 promise ('+reason+')');
+                });
+                log.insertAdjacentHTML('beforeend', thisPromiseCount +'）Promise made (<small>同步代码结束</small>)<br/>');
+            }
+            testPromise()
+    </script>
+</body>
+</html>

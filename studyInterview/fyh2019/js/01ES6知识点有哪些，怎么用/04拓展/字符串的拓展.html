@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // 随着Unicode编码的扩展，原先的0x0000~0xFFFF已经无法满足表示所有字符了
+        var text = "𠮷";    //
+        console.log(text.indexOf("中"));    //-1
+        console.log(text.charAt(0))         //�
+        console.log(text.charAt(1))         //�
+        console.log(text.charAt(2))         //空
+        console.log(text.codePointAt(0));   //134071
+        console.log(text.codePointAt(1));   //57271
+        console.log(text.codePointAt(2));   //undefined
+
+
+        // 找NaN 
+        var text = [1,NaN]
+        console.log(text.indexOf(NaN));     //-1
+        console.log(text.includes(NaN))     //true
+
+
+        //字符串的重复
+        var a='lang'
+        console.log(a.repeat(3));           //langlanglang
+        console.log(a);                     //lang  (原字符串未改变)
+        console.log(a.repeat());           //空
+        console.log(a.repeat(0));           //空
+        //console.log(a.repeat(-1));           //报错
+        //console.log(a.repeat(Infinity));     //报错
+        // 其中n会自动取整。n<=-1||n==infinaty将会报错。
+
+
+        //判读开头和结尾
+        var str='hello world'
+        console.log(str.startsWith('hello',0)); //true
+        console.log(str.startsWith('w',6)); //true
+        console.log(str.startsWith('world',0)); //false
+        console.log(str.endsWith('rl',10)); //       数字代表从第几个开始往前数 字字匹配
+        // 常用的 不带数字就是匹配　前　和　后　不管第几个
+        console.log(str.startsWith('hell')); //true
+        console.log(str.endsWith('world')); //true
+
+
+        //向字符串添加  
+        // 不会改变原字符串
+        // 两个参数　第一个是数字　字符串的长度　　第二个是添加的字符串，
+        // 若第一个参数数字比原有字符串小则不会改变
+        // 第二个参数是按顺序添加　例：a='abc'　a.padStart('6',"ce")　结果为　cecabc
+        var a='abc'
+        var b='abcd'
+        var c='abcd'
+        console.log(a.padStart('18',"ce"));     //cecececececececabc
+        console.log(a);                             //abc
+        console.log(b.padStart(100,"%"));           //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%abcd
+        console.log(c.padStart('10',0));            //000000abcd
+     　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
+        console.log(a.padEnd(10,'*'));          //abc*******
+        console.log(b.padEnd(10,'-'));              //abcd------
+        console.log(c.padEnd(10,'----'));           //abcd------
+
+        //组合使用
+        var obj={
+            name:'wangcai',
+            car:'BMW',
+            wife:'fatgirl'
+        }
+        for(var item in obj){
+             console.log(item.padEnd(10,'-')+'value:'+obj[item].padStart(10,'**'));
+        }
+
+
+        //　字符串模板
+         var age=22;
+        var name='lang'
+        var say=()=>{
+            return 'hello'
+        }
+        var str=`myname is　${name}， my age is ${age} and i can say ${say()}`
+        console.log(str);  //myname islang my age is 22 and i can say hello
+ 
+
+    </script>
+</body>
+</html>
