@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #xxx{
+            width: 100px;
+            height: 100px;
+            border: 2px solid red;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="xxx">
+
+    </div>
+    <script>
+        var xxx = document.getElementById("xxx")
+        var dragging = false
+        var position = null
+        
+        xxx.addEventListener("mousedown",function(e){
+            dragging = true
+            position = [e.clientX,e.clientY]
+        })
+        document.addEventListener("mouseup",function(e){
+            dragging = false
+        })
+        document.addEventListener("mousemove",function(e){
+            if(!dragging){
+                return
+            }
+            const x = e.clientX
+            const y = e.clientY
+            const deltaX = x - position[0]
+            const deltaY = y - position[1]
+            //注意： xxx.style.left刚开始获取的值为空，然后才是带单位的值"0px"
+            const left = parseInt(xxx.style.left || 0)
+            const top = parseInt(xxx.style.top || 0)
+            // 此处必须带有单位，否则不生效
+            xxx.style.left = left + deltaX + "px"
+            xxx.style.top = top + deltaY + "px"
+            position = [x,y]
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>练习</title>
+</head>
+<body>
+
+
+    <script>
+            // 手写ajax
+            var xhr = new XMLHttpRequest()
+            xhr.open("get","/xxxxxxx")
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState === 4){
+                    console.log("请求完成")
+                    if(xhr.status >=200 && xhr.status <300){
+                        console.log("请求成功")
+                    }else{
+                        console.log("请求失败")
+                    }
+                }
+            }
+            xhr.send()
+
+            // 函数节流（技能cd）
+            var cd = false
+            // fn释放技能内容
+            function fn(){}
+            button.onClick = function(){
+                if(cd){
+                    // 技能cd不能释放
+                }else{
+                    fn()
+                    cd = true
+                    setTimeout(()=>{
+                        cd = false
+                    },3000)
+                }
+            }
+
+            // 函数防抖 （送外卖）
+            var timerId = null
+            function fn1(){}
+            button.onClick = function(){
+                if(timerId){
+                    window.clearTimeout(timerId)
+                }
+                timerId = setTimeout(() =>{
+                    fn1()
+                    timerId = null
+                },5000)
+            }
+    </script>
+</body>
+
+</html>
