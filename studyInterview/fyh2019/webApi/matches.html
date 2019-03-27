@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        span{
+            background: red;
+        }
+        li{
+            border: 1px solid gray;
+        }
+        ul{
+            border: 2px solid red;
+        }
+    </style>
+</head>
+<body>
+    
+    <ul id = "ul1">
+        <li>01000<span>xx01</span></li>
+        <li>02000<span>xx02</span></li>
+        <li>03000<span>xx03</span></li>
+        <li>04000<span>xx04</span></li>
+    </ul>
+
+    <script>
+        function eventCommission(ele,eventType,selector,fn){
+            ele.addEventListener(eventType, e => {
+                let el = e.target
+                while(!el.matches(selector)){
+                    if(el === ele){
+                        el = null
+                        break    
+                    }
+                    el = el.parentNode
+                }
+                el && fn.call(el,e,el)
+            })
+        }
+        eventCommission(ul1,"click","li",function(e,a){
+            console.log(e.target,a)
+        })
+        // ul1.addEventListener("click",function(e){
+        //     console.log(e.target)
+        //     if(e.target.matches("")){
+
+        //     }
+        // })
+        // console.log(ul1.matches("ul"))
+        
+    </script>
+</body>
+</html>
