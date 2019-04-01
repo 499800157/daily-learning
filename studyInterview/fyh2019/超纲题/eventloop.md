@@ -39,9 +39,24 @@ nodejs是这样写的
 
 ### 自己理解
 
-1. eventloop是node里的概念
+1. eventloop是node里的概念,而浏览器中的event loop指的是宏任务和微任务
 2. eventloop事件循环总共是有6个阶段,与前端相关的事件循环 阶段 : timers , poll , check ; 顺序: timers -> poll -> check -> timers -> poll 单项循环
 3. eventloop事件循环开启 先于执行js代码,但都是异步执行,结果顺序存在不确定性.
 4. 当eventloop开启完成最终先于js代码执行,则eventloop存在于poll阶段,当ventloop开启完成最终晚于js代码执行,则进入timers阶段(这就是执行setTimeOut和setImmediate执行时顺序不确定的原因)
 4. setImmediate是在check阶段触发
 5. process.nextTick()不是event loop 的一部分,不管event loop 处于哪个阶段,process.nextTick()队列都是在当前阶段后就被执行
+6. nodejs中 执行顺序
+```
+    setTimeOut (一会)
+    setImmediate (一会)
+    nextTick (马上) 当前阶段结束就调用
+
+    promise.then() 是以上的更高层,一般是由nextTick实现的,当resolve的时候调用nextTick,
+    await(promise的封装)同promise,先转化为promise
+```
+7. chrome中
+```
+    setTimeOut 宏任务
+    promise.then => resolve -> 微任务
+    
+```
