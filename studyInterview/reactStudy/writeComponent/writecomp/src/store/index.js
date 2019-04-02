@@ -1,8 +1,11 @@
 import { createStore , applyMiddleware , compose} from "redux"
-import { combineReducers } from "redux-immutable";
-import thunk from "redux-chunk"
+import reducer from "./reducers"
+import thunk from "redux-thunk"
 
-const reducer = combineReducers({})
-const store = createStore(reducer,)
+const store = createStore(reducer,compose(
+    applyMiddleware(thunk),
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+))
 
+export default store
 

@@ -5,8 +5,9 @@ class App extends React.Component{
     render(){
         return (
             <div>
-            <Tabs></Tabs>
-        </div>
+                <h2>tab切换组件</h2>
+                <Tabs></Tabs>
+            </div>
         );
     }
 }
