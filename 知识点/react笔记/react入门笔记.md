@@ -14,6 +14,41 @@
     $ npm start
     注意：sudo ln -s create-react-app所在目录 /usr/local/bin/  才能使用该命令
 ```
+## 拓展
+1. 写页面　
+```
+    bootstrap
+    vue. element
+    react ant design
+
+```
+
+2. vscode拓展 
+```
+indent-rarinbow   //检查缩进是否规范，否则显示红色
+auto close tag
+auto rename tag 
+indenticator    //高亮显示缩进
+chinese languase //显示中文
+vscode-styled-jsx
+vetur
+todo+
+reactjs code snippets
+js jsx snippets
+import cost
+html snippets
+debugger for chrome
+beautify css/sass/scss/less
+beautify
+background
+```
+
+## 引入
+
+- require('./common/style/main.css')
+- import '@/assets/global.css'
+- <img src={require('./common/img/128H.jpg')} alt="" />
+
 
 ## 小知识点
 
@@ -56,13 +91,33 @@ ReactDOM.render(myelement,document.getElementById('example1'))
 
 5. map的用法　
 > 两种方法都可以,注释掉的是简便写法,不需要写return
+```
  this.props.items.map(
     (item)=>{
         return (<li key={item.id}>{item.text}</li>)
     }
     //   item => (<li key={item.id}>{item.text}</li>)
 )
+```
+- 遍历对象
 
+```
+map函数只能用于数组,当对对象进行循环时会报　"不是一个函数".
+
+Object.keys(item['content']).map((key,i)=>{
+    // ｛｝无法解析一个对象的子元素，所以需要将其放入一个数组中
+    newArray.push(item['content'][key]);    
+    console.log(newArray);
+})
+
+Object.keys(newArray).map((key,i)=>{
+        return(
+            <p className="newsPcontent" key={i}>{newArray[key]}</p>
+        )
+    })
+
+
+```
 6. 箭头函数
 
 - 箭头函数没有自己this;
@@ -88,10 +143,6 @@ var elements = [
     则不需要return;
 ```
 
-写页面　
-bootstrap
-vue. element
-react ant design
 
 7. state 和 props
 ```
@@ -108,7 +159,7 @@ this.state = {
 ```
 不能这么使用
     this.setState({
-    counter: this.state.counter + this.props.increment,
+        counter: this.state.counter + this.props.increment,
     }); 
 
     this.setState((prevState,props)=>({counter:this.state.counter + this.props.increment}))
@@ -118,6 +169,55 @@ this.state = {
             counter:this.state.counter + this.props.increment
         }
     })
+    要修复它，要使用第二种形式的 setState() 来接受一个函数而不是一个对象。 该函数将接收先前的状态作为第一个参数，将此次更新被应用时的props做为第二个参数：
+    // Correct正确的
+    this.setState((prevState, props) => ({
+    counter: prevState.counter + props.increment
+    }));
+```
+- 状态更新可能是异步的,setState是异步更新，而不是同步更新，下面是一个例子
+```
+    setYear(){
+        let {year} = this.state
+        this.setState({
+            year: year + 10 //新值
+        })
+    console.log(this.state.year)//旧值
+    }
+    setYear(){
+        setTimeout(() => {
+        this.setState({
+            year: year + 10 //新值
+        })
+        console.log(this.state.year)//新值
+        })
+    }
+```
+- setState回调函数
+> 由于setState是异步更新的，如果需要确定setState更新后，再进行某些操作，可以使用setState的回调函数
+```
+    this.setState({
+        val:value
+    },() => {
+        this.ref.editInput.focus()
+    })
+```
+> 状态更新合并,可以调用 setState() 独立地更新它们，但React将多个setState() 调用合并成一个调用来提高性能。
+```
+    componentDidMount() {
+        fetchPosts().then(response => {
+            this.setState({
+                posts: response.posts
+            });
+        });
+
+        fetchComments().then(response => {
+            this.setState({
+                comments: response.comments
+            });
+        });
+  }
+
 ```
 
 8. 数据传递
@@ -131,13 +231,55 @@ this.state = {
 ```
 - 这通常被称为自顶向下或单向数据流。 任何状态始终由某些特定组件所有，并且从该状态导出的任何数据或 UI 只能影响树中下方的组件。
 
+```
+    function App1() {
+        return <Greeting firstName="Ben" lastName="Hector" />;
+    }
+
+    function App2() {
+        const props = {firstName: 'Ben', lastName: 'Hector'};
+        return <Greeting {...props} />;
+    }
+```
+
+
 9. 事件绑定
 > this.handleClick = this.handleClick.bind(this);
 - 你必须谨慎对待 JSX 回调函数中的 this，类的方法默认是不会绑定 this 的。如果你忘记绑定 this.handleClick 并把它传入 onClick, 当你调用这个函数的时候 this 的值会是 undefined。
 - 这并不是 React 的特殊行为；它是函数如何在 JavaScript 中运行的一部分。通常情况下，如果你没有在方法后面添加 () ，例如 onClick={this.handleClick}，你应该为这个方法绑定 this。
 
+- 事件绑定时传递参数
 ```
-避免使用箭头函数
+以下两种方式都可以向事件处理程序传递参数：
+<button onClick={(e) => this.deleteRow(id, e)}>Delete Row</button>
+<button onClick={this.deleteRow.bind(this, id)}>Delete Row</button>
+
+```
+- bind传参
+> 通过 bind 方式向监听函数传参，在类组件中定义的监听函数，事件对象 e 要排在所传递参数的后面
+```
+class Popper extends React.Component{
+    <!-- 这里 -->
+    preventPop(name, e){   
+        e.preventDefault();
+        alert(name);
+    }
+    render(){
+        return (<a href="https://reactjs.org" onClick={this.preventPop.bind(this,this.state.name)}>Click</a>
+        );
+    }
+}
+```
+
+- 原生事件对象
+```
+    handleClick(e){
+    e.nativeEvent
+    }
+```
+
+- 避免使用箭头函数
+```
 <button onClick={(e) => this.handleClick(e)}>
     Click me
 </button>
@@ -214,13 +356,32 @@ shouldComponentUpdate(object nextProps, object nextState)：组件判断是否�
 
 
 ## 默认属性和属性类型
-可以 const defaultProps ={
-    username: "dsadsa"
+> 一个组件应该规范以下内容：这个组件支持哪些prop，以及每个prop应该是什么样的格式。React通过propTypes来支持这些功能
+```
+import PropsTypes from "prop-types"
+
+static propTypes = {
+    selectavatar : propTypes.func.isRequired
 }
-//验证一些属性
+或者
+组件.propTypes = {
+  caption: PropTypes.string.isRequired,
+  initValue: PropTypes.number
+};
 类名.propTypes = {
     userID : React.PropTypes.number.isRequired
 }
+```
+> 默认属性
+```
+可以 const defaultProps ={
+    username: "dsadsa"
+}
+Counter.defaultProps = {
+  initValue: 0
+};
+```
+
 
 ## ref
 - ref  访问组件内部DOM节点唯一可靠的方法
