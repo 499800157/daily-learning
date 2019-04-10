@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/base.css">
+    <style>
+        body{
+            padding-top: 50px;
+            padding-left: 30px;
+        }
+        .form-group-label {
+            position: relative;
+        }
+        .floating-label{
+            color: rgba(130,130,130,1);
+            cursor: text;
+            font-size: 14px;
+            line-height: 1;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            top: 11px;
+            left: 1em;
+            transition: all 0.2s;
+        }
+        .form-control{
+            background-color:#ebebeb;
+            background-image: none;
+            border: 1px solid rgb(148, 148, 148);
+            border-radius: 20px;
+            color: inherit;
+            display: block;
+            font-size: 14px;
+            height: 23px;
+            line-height: 20px;
+            padding: 7px 0 8px 1em;
+            opacity: 0.5;
+            outline: none;
+        }
+        .form-group-label.control-focus .floating-label {
+            -webkit-transform: scale(.85714,.85714) translateY(-30px);
+            transform: scale(.85714,.85714) translateY(-30px)
+        }
+        .form-group-label.control-focus .floating-label {
+            color: #399AF2;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-group-label auth-row">
+        <label class="floating-label" for="name">昵称</label>
+        <input class="form-control maxwidth-auth" id="name" type="text">
+    </div>
+    <script>
+        var parent = document.getElementsByClassName("form-group-label")[0]
+        var ipt = document.getElementsByClassName("form-control")[0]
+        ipt.onfocus = function(){
+            parent.classList.add("control-focus")
+        }
+        ipt.onblur = function(){
+            parent.classList.remove("control-focus")
+        }
+    </script>
+</body>
+</html>
