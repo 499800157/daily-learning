@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/base.css">
+    <style>
+        #app {
+            width: 20px ;
+            height: 20px ;
+            border-width: 20px;
+            border-style: solid;
+            border-color: orange blue green yellow;
+        }
+
+        #app1 {
+            width:0;
+            height:0;
+            border-width: 20px;
+            border-style: solid;
+            border-color: orange blue green yellow;
+        }
+        #app2 {
+            width:0;
+            height:0;
+            border-width: 20px;
+            border-style: solid;
+            border-color: transparent transparent green transparent;
+        }
+
+        #applast {
+            width:0;
+            height:0;
+            border-width:0 20px 20px;
+            border-style:solid;
+            border-color:transparent transparent #333;/*透明 透明  灰*/            
+        }
+
+        #app3{
+            width: 0;height: 0;
+            border-width: 20px 20px 0 0;
+            border-style:solid;
+            border-color: orange blue green yellow;
+        }
+        #app4{
+            width: 0;height: 0;
+            border-width: 40px 40px 0 0;
+            border-style:solid solid dashed dashed;
+            border-color:  transparent blue;
+        }
+        /* 提示信息框未完成 */
+        #app5{
+            overflow: hidden;
+            width: 0;height: 0;
+            border-width: 36px  40px  0px 0px;
+            border-style:solid;
+            border-color:  transparent blue transparent transparent;
+            /* -webkit-transform: rotate(-deg); */
+        }
+    </style>
+</head>
+<body>
+    <pre>
+            上下左右边框交界处出呈现平滑的斜线. 利用这个特点, 
+            通过设置不同的上下左右边框宽度或者颜色可以得到小三角, 小梯形等.
+
+    </pre>
+
+    <div id = "app"></div>
+    <br>
+    <div id = "app1"></div>
+    <br>
+    <div id = "app2"></div>
+    <br>
+    <div id = "app3"></div>
+    <br>
+    <div id = "app4"></div>
+    <br>
+    <div id = "app5"></div>
+    <br>
+
+    <br>
+    <div id = "applast"></div>
+</body>
+</html>
